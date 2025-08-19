@@ -13,7 +13,7 @@ class Program
     static int idcount = 1;
     public static void Main(string[] args)
     {
-       
+
 
         while (true)
         {
@@ -24,16 +24,16 @@ class Program
             Console.WriteLine("4. Delete Employee");
             Console.WriteLine("5. Exit");
             Console.Write("Choose option: ");
-            
-            int ch = Convert.ToInt32(Console.ReadLine());   
 
-        switch(ch)
+            int ch = Convert.ToInt32(Console.ReadLine());
+
+            switch (ch)
             {
                 case 1:
                     Addemployee();
                     break;
                 case 2:
-                    showEmployees(); 
+                    showEmployees();
                     break;
                 case 3:
                     UpdateEmployee();
@@ -42,26 +42,41 @@ class Program
                     DeleteData();
                     break;
                 case 5:
-                default:
-                     Console.WriteLine("Invalid options");
+                    Console.WriteLine("Invalid options");
                     return;
-                    break; 
+                default:
+                    Console.WriteLine(" Invalid option. Please choose 1 to 5.");
+                    break;
             }
         }
     }
     static void Addemployee()
     {
+
         Console.WriteLine("Enter emplyee name");
         string name = Console.ReadLine();
+        if(string.IsNullOrEmpty(name))
+        {
+            Console.WriteLine("Please enter name");
+            return ;
+
+        }
+
 
         Console.WriteLine("Enter emplyee age");
-        int age = Convert.ToInt32(Console.ReadLine());
+        string age = Console.ReadLine();
+
+        if (!int.TryParse(age, out int num) || num <= 0)
+        {
+            Console.WriteLine("Invalid age. Please enter a positive number");
+            return;
+        }
 
         Employee emp = new Employee
         {
-           Id = idcount++,
-           Name = name,
-           age = age
+            Id = idcount++,
+            Name = name,
+            age = num 
         };
         employees.Add(emp);
         Console.WriteLine("Employee Added !!");
@@ -123,7 +138,7 @@ class Program
             }
             else
             {
-                Console.WriteLine("❌ employee not found.");
+                Console.WriteLine(" employee not found.");
             }
         }
     }
