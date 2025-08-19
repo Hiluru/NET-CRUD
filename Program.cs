@@ -41,8 +41,11 @@ class Program
                 case 4:
                     DeleteData();
                     break;
-                case 5: return;
-                default: break;
+                case 5:
+                default:
+                     Console.WriteLine("Invalid options");
+                    return;
+                    break; 
             }
         }
     }
@@ -82,6 +85,7 @@ class Program
     }
     static void UpdateEmployee()
     {
+        showEmployees();
         Console.WriteLine("Enter employee ID to update: ");
 
 
